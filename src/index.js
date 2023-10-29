@@ -1,6 +1,8 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+// el nombre userRouter lo podemos poner nosotros
+import userRouter from "./routes/userRoutes.js";
 
 // 1. iniciar la aplicación
 const app = express();
@@ -8,7 +10,7 @@ const app = express();
 // 2. configuraciones generales del puerto con process.env.PORT sirve para que servidor te diga el puerto
 const PORT = process.env.PORT || 5000; 
 
-console.log(process.env);
+// console.log(process.env);
 
 // 3. Middlewares son etapas previas o posteriores de que se produce la accion en el controlador.
 // podemos armarlos o usar algunos que ya esten hechos. 
@@ -29,8 +31,9 @@ app.use(cors());
 // esto lo que le esta diciendo que prepare al servidor para recibir request(pedido) que tenga en el cuerpo el body json
 app.use(express.json());
 
-// 4. Rutas
-
+// 4. Rutas 
+// 1ro lo importamos arriba y luego ponemos
+app.use(userRouter);
 
 // 5. Iniciar el loop (bucle) del servidor 
 app.listen( PORT, ()=>{
